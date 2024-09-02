@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitoramento de Rematrículas 2025</title>
+    <!-- <link rel="stylesheet" href="css/styles.css"> -->
+     <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #001f3f; /* Azul Marinho */
+            margin: 0;
+            padding: 20px;
+            color: #fff;
+        }
+
+        header, footer {
+            width: 100%;
+            max-width: 1200px;
+            padding: 20px;
+            text-align: center;
+            background-color: #fff;
+            color: #001f3f;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            max-width: 1200px;
+            flex-wrap: wrap;
+            background-color: #fff;
+            color: #001f3f;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .termometro {
+            width: 80px;
+            height: 400px;
+            background-color: #e0e0e0;
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .barra {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            transition: height 0.5s;
+        }
+
+        .perfil { background-color: #001f3f; } /* Azul Marinho */
+        .criar { background-color: #FF9800; } /* Laranja */
+        .pla { background-color: #F44336; } /* Vermelho */
+        .tia-dori { background-color: #FFD700; } /* Amarelo */
+        .total { background-color: #d3d3d3; } /* Cinza para parte faltante */
+
+        .barra-horizontal {
+            width: 100%;
+            height: 20px;
+            background-color: #d3d3d3;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 5px;
+        }
+
+        .barra-horizontal-preenchida {
+            height: 100%;
+            background-color: #333;
+            width: 0%;
+            transition: width 0.5s;
+        }
+
+        .legenda {
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .info, .premiacoes {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            margin: 20px;
+        }
+
+        .instituicao {
+            margin-bottom: 10px;
+        }
+
+        .premiacao {
+            color: #999;
+            transition: color 0.5s, transform 0.5s;
+        }
+
+        .premiacao.alcancada {
+            color: #FFD700;
+            transform: scale(1.1);
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: #001f3f; /* Azul Marinho */
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #00509e;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>Monitoramento de Rematrículas 2025</h1>
+        <h2>Escolas do Grupo Perfil de Educação</h2>
+    </header>
+    <main class="container">
+        <section class="info">
+            <div class="instituicao">
+                <div id="tia-dori-info">Tia Dori: 0 / 100</div>
+                <div class="barra-horizontal">
+                    <div id="tia-dori-barra-horizontal" class="barra-horizontal-preenchida"></div>
+                </div>
+            </div>
+            <div class="instituicao">
+                <div id="pla-info">PLA: 0 / 150</div>
+                <div class="barra-horizontal">
+                    <div id="pla-barra-horizontal" class="barra-horizontal-preenchida"></div>
+                </div>
+            </div>
+            <div class="instituicao">
+                <div id="criar-info">Villa Criar: 0 / 225</div>
+                <div class="barra-horizontal">
+                    <div id="criar-barra-horizontal" class="barra-horizontal-preenchida"></div>
+                </div>
+            </div>
+            <div class="instituicao">
+                <div id="perfil-info">Perfil: 0 / 1044</div>
+                <div class="barra-horizontal">
+                    <div id="perfil-barra-horizontal" class="barra-horizontal-preenchida"></div>
+                </div>
+            </div>
+        </section>
+        <section class="termometro">
+            <div id="total-bar" class="barra total" style="height: 0%;">
+                <div class="legenda" id="total-legend">Total: 0</div>
+            </div>
+            <div id="tia-dori-bar" class="barra tia-dori" style="height: 0%;">
+                <div class="legenda" id="tia-dori-legend">0</div>
+            </div>
+            <div id="pla-bar" class="barra pla" style="height: 0%;">
+                <div class="legenda" id="pla-legend">0</div>
+            </div>
+            <div id="criar-bar" class="barra criar" style="height: 0%;">
+                <div class="legenda" id="criar-legend">0</div>
+            </div>
+            <div id="perfil-bar" class="barra perfil" style="height: 0%;">
+                <div class="legenda" id="perfil-legend">0</div>
+            </div>
+        </section>
+        <section class="premiacoes">
+            <div id="premiacao-15" class="premiacao">Pix de R$ 5000,00</div>
+            <div id="premiacao-14" class="premiacao">iPhone 13</div>
+            <div id="premiacao-13" class="premiacao">Televisão de 65"</div>
+            <div id="premiacao-12" class="premiacao">Notebook</div>
+            <div id="premiacao-11" class="premiacao">Televisão de 55"</div>
+            <div id="premiacao-10" class="premiacao">JBL BoomBox</div>
+            <div id="premiacao-9" class="premiacao">Televisão de 43"</div>
+            <div id="premiacao-8" class="premiacao">Air Fryer (2)</div>
+            <div id="premiacao-7" class="premiacao">FDS casal na Pousada Villas (2)</div>
+            <div id="premiacao-6" class="premiacao">Kindle (2)</div>
+            <div id="premiacao-5" class="premiacao">Máquina de café expresso (4)</div>
+            <div id="premiacao-4" class="premiacao">Alexa (8)</div>
+            <div id="premiacao-3" class="premiacao">Mi Band 8 Global (6)</div>
+            <div id="premiacao-2" class="premiacao">Kit Natalino (Perdigão ou Sadia) (4)</div>
+            <div id="premiacao-1" class="premiacao">Kit churrasco (Carnes 12 pessoas) (10)</div>
+        </section>
+    </main>
+    <footer>
+        <button onclick="window.open('atualizar')">Atualizar Dados</button>
+    </footer>
+    <script src="js/scripts.js"></script>
+</body>
+</html>
